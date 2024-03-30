@@ -1,0 +1,162 @@
+init:
+acoustic_input_size:
+visual_input_size:
+aux_ctc:
+
+# acoustic frontend related
+acoustic_frontend: default
+acoustic_frontend_conf:
+  n_fft: 512
+  win_length: 400
+  hop_length: 160
+
+# spec augment related
+specaug: specaug
+specaug_conf:
+  apply_time_warp: true
+  time_warp_window: 5
+  time_warp_mode: bicubic
+  apply_freq_mask: true
+  freq_mask_width_range:
+  - 0
+  - 27
+  num_freq_mask: 2
+  apply_time_mask: true
+  time_mask_width_ratio_range:
+  - 0.
+  - 0.05
+  num_time_mask: 5
+
+# normalize related
+normalize: utterance_mvn
+normalize_conf:
+  norm_means: true
+  norm_vars: false
+
+# visual frontend related
+visual_frontend: conv3dresnet18
+visual_frontend_conf:
+  activation_type: "swish"
+
+# acoustic embedding related
+acoustic_embed: default
+acoustic_embed_conf:
+  pos_enc_layer_type: "rel_pos"
+  rel_pos_type: "latest"
+  input_layer: "conv2d"
+  dropout_rate: 0.1
+  positional_dropout_rate: 0.1
+
+# visual embedding related
+visual_embed: default
+visual_embed_conf:
+  pos_enc_layer_type: "rel_pos"
+  rel_pos_type: "latest"
+  input_layer: "linear"
+  dropout_rate: 0.1
+  positional_dropout_rate: 0.1
+
+# encoder related
+encoder: tailored
+encoder_conf:
+  output_size: 256
+  attention_heads: 4
+  linear_units: 2048
+  num_blocks: 12
+  dropout_rate: 0.1
+  positional_dropout_rate: 0.1
+  attention_dropout_rate: 0.1
+  acoustic_branch_drop_rate: 0.0
+  attention_layer_type: "rel_selfattn"
+  positionwise_layer_type: "linear"
+  ffn_activation_type: "swish"
+  cgmlp_linear_units: 2048
+  cgmlp_conv_kernel: 31
+  acoustic_use_attn: [false, true, true, true, false, true, false, true, false, true, true, true]
+  visual_use_attn: [true, true, true, true, false, true, true, true, true, true, true, true]
+  macaron: true
+  interctc_use_conditioning: false
+  audiovisual_interctc_conditioning: false
+
+# audiovisual fusion related
+audiovisual_fusion: adaptive
+audiovisual_fusion_conf:
+  output_size: 256
+  hidden_units: 2048
+  audiovisual_layer_type: "upsampling_positionwise"
+  merge_method: "learned_ave"
+  dropout_rate: 0.1
+
+# decoder related
+decoder: transformer
+decoder_conf:
+  attention_heads: 4
+  linear_units: 2048
+  num_blocks: 6
+  dropout_rate: 0.1
+  positional_dropout_rate: 0.1
+  self_attention_dropout_rate: 0.1
+  src_attention_dropout_rate: 0.1
+
+# ctc
+ctc_conf:
+  dropout_rate: 0.1
+  ctc_type: "builtin"
+  reduce: true
+
+# model related
+model: espnet
+model_conf:
+  ctc_weight: 0.1
+  interctc_weight: 0.0
+  ignore_id: -1
+  lsm_weight: 0.1
+  length_normalized_loss: false
+  report_cer: true
+  report_wer: false
+  # sym_space: "▁"
+  sym_space: "<space>"
+  sym_blank: "<blank>"
+  sym_sos: "<sos/eos>"
+  sym_eos: "<sos/eos>"
+  extract_feats_in_collect_stats: false
+  lang_token_id: -1
+
+# inference related
+inference_conf:
+  maxlenratio: 0.0
+  minlenratio: 0.0
+  batch_size: 1
+  beam_size: 30
+  ctc_weight: 0.1
+  lm_weight: 0.4
+  penalty: 0.0
+  nbest: 1
+
+# token related
+# token_type: bpe
+# bpemodel: "./src/tokenizers/spm/spanish/MUAVIC+CMUMOSEAS+LIPRTVE+VLRF/muavic+cmumoseas+liprtve+vlrf_256vocab.model"
+# token_list: "./src/tokenizers/spm/spanish/MUAVIC+CMUMOSEAS+LIPRTVE+VLRF/muavic+cmumoseas+liprtve+vlrf_256vocab.token"
+token_type: char
+bpemodel:
+token_list: "./src/tokenizers/char/spanish.txt"
+
+# training related
+nframes: 400
+optimizer: "adam"
+scheduler: "noam"
+batch_size: 4
+warmup_steps: 10000
+# warmup_steps: 25000
+learning_rate: 0.001
+# learning_rate: 0.0004
+noam_factor: 1.6
+# noam_factor: 1.0
+grad_clip: -1.0
+accum_grad: 16
+# accum_grad: 4
+epochs: 70
+average_epochs: 7
+use_amp: false
+dtype: "float32"
+device: "cuda:0"

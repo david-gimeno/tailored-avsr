@@ -1,0 +1,56 @@
+# lm related
+lm: transformer
+lm_conf:
+  pos_enc:
+  embed_unit: 128
+  att_unit: 512
+  head: 8
+  unit: 2048
+  layer: 16
+  dropout_rate: 0.0
+
+# espnet model related
+model_conf:
+  ignore_id: -1
+
+# other details
+init: "chainer"
+token_list: [
+  "<blank>",
+  "<unk>",
+  "<space>",
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+  "Á",
+  "É",
+  "Í",
+  "Ñ",
+  "Ó",
+  "Ú",
+  "Ü",
+  "<sos/eos>",
+  ]

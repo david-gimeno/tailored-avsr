@@ -1,0 +1,131 @@
+init:
+input_size:
+aux_ctc:
+
+# normalize related
+normalize: utterance_mvn
+normalize_conf:
+  norm_means: true
+  norm_vars: false
+
+# frontend related
+frontend: default
+frontend_conf:
+  n_fft: 512
+  win_length: 400
+  hop_length: 160
+
+# spec augment related
+specaug: specaug
+specaug_conf:
+  apply_time_warp: true
+  time_warp_window: 5
+  time_warp_mode: bicubic
+  apply_freq_mask: true
+  freq_mask_width_range:
+  - 0
+  - 27
+  num_freq_mask: 2
+  apply_time_mask: true
+  time_mask_width_ratio_range:
+  - 0.
+  - 0.05
+  num_time_mask: 5
+
+# encoder related
+encoder: my_e_branchformer
+encoder_conf:
+  output_size: 256
+  attention_heads: 4
+  linear_units: 2048
+  num_blocks: 12
+  cgmlp_linear_units: 2048
+  cgmlp_conv_kernel: 31
+  dropout_rate: 0.1
+  positional_dropout_rate: 0.1
+  attention_dropout_rate: 0.1
+  attn_branch_drop_rate: 0.0
+  input_layer: "conv2d"
+  rel_pos_type: "latest"
+  pos_enc_layer_type: "rel_pos"
+  attention_layer_type: "rel_selfattn"
+  positionwise_layer_type: "linear"
+  ffn_activation_type: "swish"
+  merge_method: "learned_ave"
+  use_attn: true
+  use_cgmlp: true
+  macaron: true
+
+# decoder related
+decoder: transformer
+decoder_conf:
+  attention_heads: 4
+  linear_units: 2048
+  num_blocks: 6
+  dropout_rate: 0.1
+  positional_dropout_rate: 0.1
+  self_attention_dropout_rate: 0.1
+  src_attention_dropout_rate: 0.1
+
+# ctc
+ctc_conf:
+  dropout_rate: 0.1
+  ctc_type: "builtin"
+  reduce: true
+
+# model related
+model: espnet
+model_conf:
+  ctc_weight: 0.1
+  interctc_weight: 0.0
+  ignore_id: -1
+  lsm_weight: 0.1
+  length_normalized_loss: false
+  report_cer: true
+  report_wer: false
+  # sym_space: "▁"
+  sym_space: "<space>"
+  sym_blank: "<blank>"
+  sym_sos: "<sos/eos>"
+  sym_eos: "<sos/eos>"
+  extract_feats_in_collect_stats: false
+  lang_token_id: -1
+
+# inference related
+inference_conf:
+  maxlenratio: 0.0
+  minlenratio: 0.0
+  batch_size: 1
+  beam_size: 40
+  ctc_weight: 0.1
+  lm_weight: 0.6
+  penalty: 0.5
+  nbest: 1
+
+# token related
+# token_type: bpe
+# bpemodel: "./src/tokenizers/spm/english/LRS2BBC+LRS3TED/lrs2bbc+lrs3ted_256vocab.model"
+# token_list: "./src/tokenizers/spm/english/LRS2BBC+LRS3TED/lrs2bbc+lrs3ted_256vocab.token"
+token_type: char
+bpemodel:
+token_list: "./src/tokenizers/char/english.txt"
+
+# training related
+nframes: 500
+optimizer: "adam"
+scheduler: "noam"
+batch_size: 16
+warmup_steps: 10000
+# warmup_steps: 25000
+learning_rate: 0.001
+# learning_rate: 0.0004
+noam_factor: 1.6
+# noam_factor: 1.0
+accum_grad: 4
+# accum_grad: 1
+grad_clip: -1.0
+epochs: 200
+average_epochs: 20
+use_amp: false
+dtype: "float32"
+device: "cuda:0"
