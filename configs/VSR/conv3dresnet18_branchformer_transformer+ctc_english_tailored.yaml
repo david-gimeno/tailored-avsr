@@ -1,3 +1,7 @@
+task: vsr
+dtype: "float32"
+device: "cuda:0"
+
 init:
 input_size:
 aux_ctc:
@@ -14,7 +18,7 @@ frontend_conf:
 specaug:
 
 # encoder related
-encoder: my_e_branchformer
+encoder: branchformer
 encoder_conf:
   output_size: 256
   attention_heads: 4
@@ -32,7 +36,6 @@ encoder_conf:
   attention_layer_type: "rel_selfattn"
   positionwise_layer_type: "linear"
   ffn_activation_type: "swish"
-  # merge_method: "learned_ave"
   cgmlp_weight: [0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]
   merge_method: "fixed_ave"
   use_attn: true
@@ -66,7 +69,6 @@ model_conf:
   length_normalized_loss: false
   report_cer: true
   report_wer: false
-  # sym_space: "▁"
   sym_space: "<space>"
   sym_blank: "<blank>"
   sym_sos: "<sos/eos>"
@@ -86,29 +88,20 @@ inference_conf:
   nbest: 1
 
 # token related
-# token_type: bpe
-# bpemodel: "./src/tokenizers/spm/english/LRS2BBC+LRS3TED/lrs2bbc+lrs3ted_256vocab.model"
-# token_list: "./src/tokenizers/spm/english/LRS2BBC+LRS3TED/lrs2bbc+lrs3ted_256vocab.token"
 token_type: char
 bpemodel:
 token_list: "./src/tokenizers/char/english.txt"
 
 # training related
-nframes: 500
-optimizer: "adamw"
-scheduler: "onecycle"
-batch_size: 4
-# warmup_steps: 10000
-# warmup_steps: 25000
-learning_rate: 0.0005
-# learning_rate: 0.0004
-# noam_factor: 1.6
-# noam_factor: 1.0
-accum_grad: 16
-# accum_grad: 1
-grad_clip: -1.0
-epochs: 5
-average_epochs: 1
-use_amp: false
-dtype: "float32"
-device: "cuda:0"
+training_settings:
+  nframes: 500
+  optimizer: "adamw"
+  scheduler: "onecycle"
+  batch_size: 4
+  learning_rate: 0.0005
+  accum_grad: 16
+  grad_clip: -1.0
+  epochs: 10
+  average_epochs: 1
+  use_amp: false
+  num_workers: 8

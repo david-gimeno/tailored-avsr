@@ -1,3 +1,7 @@
+task: avsr
+dtype: "float32"
+device: "cuda:0"
+
 init:
 acoustic_input_size:
 visual_input_size:
@@ -115,7 +119,6 @@ model_conf:
   length_normalized_loss: false
   report_cer: true
   report_wer: false
-  # sym_space: "▁"
   sym_space: "<space>"
   sym_blank: "<blank>"
   sym_sos: "<sos/eos>"
@@ -135,29 +138,24 @@ inference_conf:
   nbest: 1
 
 # token related
-# token_type: bpe
-# bpemodel: "./src/tokenizers/spm/english/LRS2BBC+LRS3TED/lrs2bbc+lrs3ted_256vocab.model"
-# token_list: "./src/tokenizers/spm/english/LRS2BBC+LRS3TED/lrs2bbc+lrs3ted_256vocab.token"
 token_type: char
 bpemodel:
 token_list: "./src/tokenizers/char/english.txt"
 
 # training related
-nframes: 500
-optimizer: "adam"
-scheduler: "noam"
-batch_size: 2
-warmup_steps: 10000
-# warmup_steps: 25000
-learning_rate: 0.001
-# learning_rate: 0.0004
-noam_factor: 1.6
-# noam_factor: 1.0
-grad_clip: -1.0
-accum_grad: 32
-# accum_grad: 4
-epochs: 70
-average_epochs: 7
-use_amp: false
-dtype: "float32"
-device: "cuda:0"
+training_settings:
+  nframes: 500
+  optimizer: "adam"
+  scheduler: "noam"
+  batch_size: 2
+  warmup_steps: 10000
+  learning_rate: 0.001
+  noam_factor: 1.6
+  grad_clip: -1.0
+  accum_grad: 32
+  epochs: 100
+  average_epochs: 10
+  use_amp: false
+  dtype: "float32"
+  device: "cuda:0"
+  num_workers: 8

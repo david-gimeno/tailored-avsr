@@ -295,7 +295,7 @@ class MyBranchformerEncoder(AbsEncoder):
 
         self.encoders = repeat(
             num_blocks,
-            lambda lnum: MyEBranchformerEncoderLayer(
+            lambda lnum: MyBranchformerEncoderLayer(
                 output_size,
                 encoder_selfattn_layer(*encoder_selfattn_layer_args) if use_attn else None,
                 cgmlp_layer(*cgmlp_layer_args) if use_cgmlp else None,

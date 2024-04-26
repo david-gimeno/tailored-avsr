@@ -219,11 +219,7 @@ class ConventionalEncoder(AudioVisualAbsEncoder):
     def get_encoder_class(self, encoder_class_type):
         if encoder_class_type == "conformer":
             return ConformerEncoder
-        elif encoder_class_type == "my_e_branchformer":
-            return MyEBranchformerEncoder
-        elif encoder_class_type == "simt_conformer":
-            return ConformerEncoderSimT
-        elif encoder_class_type == "simt_my_e_branchformer":
-            return MyEBranchformerEncoderSimT
+        elif encoder_class_type == "branchformer":
+            return MyBranchformerEncoder
         else:
             raise ValueError("unknown encoder_class_type: " + encoder_class_type)

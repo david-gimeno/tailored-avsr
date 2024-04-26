@@ -1,6 +1,10 @@
+task: asr
+dtype: "float32"
+device: "cuda:0"
+
 init:
-input_size:
 aux_ctc:
+input_size:
 
 # normalize related
 normalize: utterance_mvn
@@ -33,7 +37,7 @@ specaug_conf:
   num_time_mask: 5
 
 # encoder related
-encoder: my_e_branchformer
+encoder: branchformer
 encoder_conf:
   output_size: 256
   attention_heads: 4
@@ -103,29 +107,22 @@ inference_conf:
   nbest: 1
 
 # token related
-# token_type: bpe
-# bpemodel: "./src/tokenizers/spm/spanish/MUAVIC+CMUMOSEAS+LIPRTVE+VLRF/muavic+cmumoseas+liprtve+vlrf_256vocab.model"
-# token_list: "./src/tokenizers/spm/spanish/MUAVIC+CMUMOSEAS+LIPRTVE+VLRF/muavic+cmumoseas+liprtve+vlrf_256vocab.token"
 token_type: char
 bpemodel:
 token_list: "./src/tokenizers/char/spanish.txt"
 
 # training related
-nframes: 500
-optimizer: "adam"
-scheduler: "noam"
-batch_size: 16
-warmup_steps: 10000
-# warmup_steps: 25000
-learning_rate: 0.001
-# learning_rate: 0.0004
-noam_factor: 1.6
-# noam_factor: 1.0
-accum_grad: 4
-# accum_grad: 1
-grad_clip: -1.0
-epochs: 200
-average_epochs: 20
-use_amp: false
-dtype: "float32"
-device: "cuda:0"
+training_settings:
+  nframes: 500
+  optimizer: "adam"
+  scheduler: "noam"
+  batch_size: 16
+  warmup_steps: 10000
+  learning_rate: 0.001
+  noam_factor: 1.6
+  accum_grad: 4
+  grad_clip: -1.0
+  epochs: 100
+  average_epochs: 10
+  use_amp: false
+  num_workers: 8

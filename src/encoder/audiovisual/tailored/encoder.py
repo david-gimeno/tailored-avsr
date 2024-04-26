@@ -34,7 +34,7 @@ from src.encoder.audiovisual.tailored.encoder_layer import TailoredEncoderLayer
 from src.audiovisual_fusion.audiovisual_fusion_abs_module import AudioVisualFusionAbsModule
 
 class TailoredEncoder(AudioVisualAbsEncoder):
-    """Unified and Tailored AudioVisual E-Branchformer Encoder module.
+    """Unified and Tailored AudioVisual Branchformer-based Encoder module.
 
     """
     def __init__(
