@@ -7,8 +7,6 @@ from src.tasks import ASRTask
 from src.tasks import AVSRTask
 from src.evaluation import compute_bootstrap_wer
 from espnet2.torch_utils.model_summary import model_summary
-from src.inference import ASR2Text, ASR2TextMaskCTC, AVSR2Text, AVSR2TextMaskCTC
-
 
 import os
 import sys
