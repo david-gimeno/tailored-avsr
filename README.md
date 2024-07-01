@@ -100,7 +100,7 @@ The model checkpoints for audio-only, video-only, and audio-visual settings are 
 
 <div align="center"> <img src="docs/english_results.png"> </div>
 
-**Note:** Detailed discussion on these results and those achieved for the Spanish VSR benchmark can be found in our [paper]()!
+Detailed discussion on these results and those achieved for the Spanish VSR benchmark can be found in our [paper]()!
 
 ## <a name="citation"></a> 📖 Citation
 
