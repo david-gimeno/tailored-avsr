@@ -1,5 +1,5 @@
-espnet=202402
-torchaudio=2.0.1
-colorama=0.4.6
-pandas=1.5.3
-torchvision=0.15.1
+espnet==202402
+torchaudio==2.0.1
+colorama==0.4.6
+pandas==1.5.3
+torchvision==0.15.1
