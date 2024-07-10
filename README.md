@@ -17,6 +17,15 @@
 [📝 License](#license)
 </div>
 
+
+## <a name="tldr"> </a> TL;DR 
+<div align="center">
+  
+  [📜 Arxiv Link]([https://arxiv.org/abs/2401.02746](https://arxiv.org/abs/2407.06606))
+</div>
+
+We proposed a novel framework harnessing the flexibility and interpretability offered by the Branchformer encoder architecture in the design of parameter-efficient AVSR systems. Extensive experiments on English and Spanish AVSR benchmarks covering multiple data conditions and scenarios demonstrated the effectiveness of our proposed method achieving state-of-the-art recognition rates while significantly reducing the model complexity.
+
 ## <a name="intro"></a> 📘 Introduction
 
 <div align="center"> <img src="docs/tailored_arch.png"> </div>
