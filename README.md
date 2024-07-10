@@ -103,21 +103,21 @@ The model checkpoints for audio-only, video-only, and audio-visual settings are 
 
 <div align="center"> <img src="docs/english_results.png"> </div>
 
-Detailed discussion on these results and those achieved for the Spanish VSR benchmark can be found in our [paper]()!
+Detailed discussion on these results and those achieved for the Spanish VSR benchmark can be found in our [paper](https://arxiv.org/abs/2407.06606)!
 
 ## <a name="citation"></a> 📖 Citation
 
-The paper is currently under review for the IEEE/ACM Transactions on Audio, Speech, and Language Processing (TASLP) journal.
+The paper is currently under review for the IEEE/ACM Transactions on Audio, Speech, and Language Processing (TASLP) journal. For the moment, if you found useful our work, please cite our paper as follows:
 
 ```
-@article{gimeno2025tailored,
+@article{gimeno2024tailored,
   author={Gimeno-G{\'o}mez, David and Carlos-David},
   title={{Tailored Design of Audio-Visual Speech Recognition Models using Branchformers}},
-  journal={},
+  journal={arXiv preprint arXiv:2407.06606},
   volume={},
   pages={}
-  year={},
-  publisher="",
+  year={2024},
+  publisher={},
 }
 ```
 
