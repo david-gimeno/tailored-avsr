@@ -116,7 +116,7 @@ python avsr_main.py \
 
 ## <a name="modelzoo"></a> 🦒 Model Zoo
 
-The model checkpoints for audio-only, video-only, and audio-visual settings are publicly available in our official Zenodo repository. Please, click [here](https://zenodo.org/records/12772516]) to download the checkpoints along with their corresponding tokenizers and configuration files. By following the instructions indicated above for both training and inference, you will be able to evaluate our models and also fine-tune them to your dataset of interest.
+The model checkpoints for audio-only, video-only, and audio-visual settings are publicly available in our official Zenodo repository. Please, click [here](https://zenodo.org/records/12772516) to download the checkpoints along with their corresponding tokenizers and configuration files. By following the instructions indicated above for both training and inference, you will be able to evaluate our models and also fine-tune them to your dataset of interest.
 
 ## <a name="results"></a> 📊 Results
 
