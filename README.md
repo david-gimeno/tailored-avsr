@@ -120,7 +120,7 @@ The paper is currently under review for the IEEE/ACM Transactions on Audio, Spee
 
 ```
 @article{gimeno2024tailored,
-  author={Gimeno-G{\'o}mez, David and Carlos-David},
+  author={Gimeno-G{\'o}mez, David and Carlos-D. Martínez-Hinarejos},
   title={{Tailored Design of Audio-Visual Speech Recognition Models using Branchformers}},
   journal={arXiv preprint arXiv:2407.06606},
   volume={},
