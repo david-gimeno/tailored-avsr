@@ -73,18 +73,28 @@ LIP-RTVE/
 
 ## <a name="training"></a> 💪 Training
 
-The following command represents a fine-tuning and inference of an English AVSR system to the Spanish LIP-RTVE dataset among other details:
+We will show the most relevant steps necessary to estimate and AVSR system based on our code implementantion. Let consider we want to train a model for the LIP-RTVE dataset. The first, we should do is to estimate our SentencePiece tokenizer as follows:
+
+```
+python src/tokenizers/spm/train_spm_model.py \
+  --split-path ./splits/training/speaker-independent/liprtve.csv \
+  --dst-spm-dir ./src/tokenizers/spm/256vocab/ \
+  --spm-name liprtve \
+  --vocab-size 256
+
+```
+
+Once we have modified the `` of the configuration file according to our previous step, the following command represents both the training and inference of an Spanish AVSR system on the Spanish LIP-RTVE dataset among other details:
 
 ```
 python avsr_main.py \
   --training-dataset ./splits/training/speaker-independent/liprtve.csv \
   --validation-dataset ./splits/validation/speaker-independent/liprtve.csv \
   --test-dataset ./splits/test/speaker-independent/liprtve.csv \
-  --config-file ./configs/AVSR/conventional_transformer+ctc_english.yaml \
-  --load-checkpoint ./model_checkpoints/avsr/avsr_english.pth \
+  --config-file ./configs/AVSR/conventional_transformer+ctc_spanish.yaml \
   --mode both \
-  --output-dir ./exps/fine-tuning/LIP-RTVE/ \
-  --output-name test-liprtve-si-finetuned-from-english \
+  --output-dir ./exps/avsr/liprtve/ \
+  --output-name test-si-liprtve \
   --yaml-overrides training_settins:batch_size:8
 ```
 
@@ -95,18 +105,18 @@ Once we have estimated a model we can perform more inference processes, e.g., in
 ```
 python avsr_main.py \
   --test-dataset ./splits/test/speaker-independent/liprtve.csv \
-  --config-file ./configs/AVSR/conventional_transformer+ctc_english.yaml \
-  --load-checkpoint ./exps/fine-tuning/LIP-RTVE/models/model_average.pth \
+  --config-file ./configs/AVSR/conventional_transformer+ctc_spanish.yaml \
+  --load-checkpoint ./exps/avsr/liprtve/models/model_average.pth \
   --mode inference \
   --lm-config-file ./configs/LM/lm-spanish.yaml \
-  --load-lm ./model_checkpoints/lm/english.pth \
-  --output-dir ./exps/fine-tuning/LIP-RTVE/ \
-  --output-name test-liprtve-si-finetuned-from-english+lm \
+  --load-lm ./model_checkpoints/lm/spanish.pth \
+  --output-dir ./exps/avsr/liprtve/ \
+  --output-name test-si-liprtve+lm \
 ```
 
 ## <a name="modelzoo"></a> 🦒 Model Zoo
 
-The model checkpoints for audio-only, video-only, and audio-visual settings are publicly available in our official Zenodo repository. Please, click [here](https://zenodo.org/records/11441180]) to download the checkpoints along with their corresponding configuration files. By following the instructions indicated above for both training and inference, you will be able to evaluate our models and also fine-tune them to your dataset of interest.
+The model checkpoints for audio-only, video-only, and audio-visual settings are publicly available in our official Zenodo repository. Please, click [here](https://zenodo.org/records/11441180]) to download the checkpoints along with their corresponding tokenizers and configuration files. By following the instructions indicated above for both training and inference, you will be able to evaluate our models and also fine-tune them to your dataset of interest.
 
 ## <a name="results"></a> 📊 Results
 
