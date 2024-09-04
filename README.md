@@ -126,7 +126,7 @@ Detailed discussion on these results and those achieved for the Spanish VSR benc
 
 ## <a name="citation"></a> 📖 Citation
 
-The paper is currently under review for the IEEE/ACM Transactions on Audio, Speech, and Language Processing (TASLP) journal. For the moment, if you found useful our work, please cite our paper as follows:
+The paper is currently under review for the Elsevier Computer Speech & Language journal. For the moment, if you found useful our work, please cite our preprint paper as follows:
 
 ```
 @article{gimeno2024tailored,
