@@ -37,7 +37,7 @@ specaug_conf:
   num_time_mask: 5
 
 # encoder related
-encoder: my_e_branchformer
+encoder: branchformer
 encoder_conf:
   output_size: 256
   attention_heads: 4
@@ -115,7 +115,7 @@ bpemodel:
 token_list: "./src/tokenizers/char/english.txt"
 
 # training related
-training_setttings:
+training_settings:
   nframes: 500
   optimizer: "adam"
   scheduler: "noam"
