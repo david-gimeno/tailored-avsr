@@ -21,7 +21,7 @@
 ## <a name="tldr"> </a> TL;DR 
 <div align="center">
   
-  [📜 Arxiv Link](https://arxiv.org/abs/2407.06606)
+  [📜 Arxiv Link](https://www.arxiv.org/abs/2407.06606)
 </div>
 
 We proposed a novel framework harnessing the **flexibility** and **interpretability** offered by the Branchformer encoder architecture in the design of **parameter-efficient AVSR systems**. Extensive experiments on English and Spanish AVSR benchmarks covering multiple data conditions and scenarios demonstrated the effectiveness of our proposed method achieving **state-of-the-art recognition rates** while significantly reducing the model complexity.
@@ -122,7 +122,7 @@ The model checkpoints for audio-only, video-only, and audio-visual settings are 
 
 <div align="center"> <img src="docs/english_results.png"> </div>
 
-Detailed discussion on these results and those achieved for the Spanish VSR benchmark can be found in our [paper](https://arxiv.org/abs/2407.06606)!
+Detailed discussion on these results and those achieved for the Spanish VSR benchmark can be found in our [pre-print paper](https://www.arxiv.org/abs/2407.06606)!
 
 ## <a name="citation"></a> 📖 Citation
 
